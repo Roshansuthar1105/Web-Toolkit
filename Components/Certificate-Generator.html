@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Certificate Generator</title>
+    <style>
+        body {
+            text-align: center;
+            /* padding: 20px; */
+            font-family: Arial, sans-serif;
+        }
+
+        .certificate {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #cdc1c1;
+            padding: 20px;
+            margin: 20px auto;
+            width: 70vw;
+            height: 65vh;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 10px 10px 10px black;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 40px;
+        }
+
+        #courseName {
+            font-size: 30px;
+        }
+
+        .recipient,
+        .course {
+            font-weight: bold;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            width: 400px;
+        }
+
+        #generateCertificate:hover {
+            box-shadow: 0px 0px 10px cyan;
+        }
+
+        .btn,
+        a {
+            border: none;
+            outline: none;
+            padding: 10px 20px;
+            background-color: lightgreen;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 20px;
+        }
+
+        .cont {
+            height: 70vh;
+            padding: 10px;
+        }
+
+        #certificateCanvas {
+            padding: 10px;
+            width: 800px;
+            height: 500px;
+            border: 20px solid gray;
+            border-radius: 20px;
+        }
+
+        p {
+            font-size: 19px;
+        }
+
+        .btn1 {
+            background-color: rgb(234, 145, 89);
+        }
+
+        .btn2 {
+            margin: 20px;
+        }
+
+        input {
+            outline: none;
+            background-color: aqua;
+            border: none;
+            padding: 10px 20px;
+            background-color: lightgreen;
+            font-size: 14px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cont" id="ct">
+        <div class="certificate">
+            <h1>Certificate of Completion</h1>
+            <p>This is to certify that</p>
+            <div class="recipient">
+                <span id="recipientName">Your Name Here </span>
+
+            </div>
+            <p>has successfully completed the course</p>
+            <div class="course">
+                <span id="courseName">Web Development</span>
+            </div>
+        </div>
+
+        <input type="text" id="inputName" placeholder="Enter Name">
+        <button id="changeName" class="btn btn1">Change Name</button> <br>
+        <button id="generateCertificate" class="btn btn2">Generate Certificate</button>
+
+    </div>
+
+    <a id="downloadLink" style="display: none">Download Certificate</a>
+    <canvas id="certificateCanvas" width="800" height="500" style="display: none"></canvas>
+    <script>
+
+        document.getElementById('changeName').addEventListener('click', changeRecipientName);
+        document.getElementById('generateCertificate').addEventListener('click', generateCertificate);
+
+        function changeRecipientName() {
+            const inputName = document.getElementById('inputName').value;
+            if (inputName === '') {
+                alert("Enter your name");
+            }
+            else {
+                document.getElementById('recipientName').textContent = inputName;
+            }
+
+        }
+
+        function generateCertificate() {
+            const recipientName = document.getElementById('recipientName').textContent;
+            const courseName = document.getElementById('courseName').textContent;
+            const canvas = document.getElementById('certificateCanvas');
+            const ctx = canvas.getContext('2d');
+
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw certificate background
+            ctx.fillStyle = '#f5f5f5';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // Add certificate text
+            ctx.font = '28px Arial';
+            ctx.fillStyle = '#333';
+            ctx.fillText('Certificate of Completion', 50, 100);
+
+            ctx.font = '20px Arial';
+            ctx.fillText('This is to certify that', 50, 150);
+
+            ctx.font = '24px Arial';
+            ctx.fillText(recipientName, 50, 200);
+
+            ctx.font = '20px Arial';
+            ctx.fillText('has successfully completed the course', 50, 250);
+
+            ctx.font = '24px Arial';
+            ctx.fillText(courseName, 50, 300);
+
+            // Show the download link
+            const downloadLink = document.getElementById('downloadLink');
+            downloadLink.style.display = 'block';
+
+            // Convert canvas to image and set the download link
+            const certificateImage = canvas.toDataURL('image/png');
+            downloadLink.href = certificateImage;
+            downloadLink.download = 'certificate.png';
+
+            const certificateCanvas = document.getElementById('certificateCanvas');
+            certificateCanvas.style.display = 'block';
+
+            const ct = document.getElementById('ct');
+            ct.style.display = 'none';
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        .cont {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: lightblue;
+            flex-direction: column;
+            padding-top: 10px;
+            width: 50vw;
+            border: 0px solid black;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            box-shadow: 6px 6px 7px darkslategrey;
+
+
+        }
+
+        #StudentRecord {
+            margin: 20px;
+            width: 40vw;
+            border-radius: 15px;
+            box-shadow: 0px 0px 10px black;
+
+        }
+
+        .button,
+        .btn {
+            width: 300px;
+            height: 50px;
+            margin: 10px;
+            border: 0px solid black;
+            border-radius: 8px;
+            background-color: #73C2FB;
+            font-size: 25px;
+        }
+
+        .btn:hover,
+        .button:hover {
+            width: 350px;
+            cursor: pointer;
+            box-shadow: 0px 0px 30px cyan;
+            color: #73C2FB;
+            background-color: rgb(46, 46, 46);
+            transition: all 800ms ease;
+        }
+
+        .cont:hover .btn,
+        .button {
+            width: 300px;
+            box-shadow: 0px 0px 0px;
+            transition: all 800ms ease;
+
+        }
+
+        .bdy {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 20px;
+            flex-direction: column;
+        }
+
+        body {
+            background-color: aquamarine;
+            font-family: monospace;
+
+        }
+
+        .td {
+            text-align: center;
+        }
+
+        .go-home {
+            height: 70px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background-color: aquamarine;
+        }
+
+        .home-btn {
+            color: #0b1d3b;
+            background-color: #73C2FB;
+            border-radius: 10px;
+            letter-spacing: 3px;
+            font-family: monospace;
+            font-weight: 600;
+            border: 3px solid #4B0082;
+            font-size: 25px;
+            padding: 7px 30px;
+            text-decoration: none;
+        }
+
+        .home-btn:hover {
+            box-shadow: 0px 0px 25px cyan;
+        }
+
+        .name {
+            width: 50vw;
+            margin-bottom: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            background-color: #023E8A;
+            text-align: center;
+            font-size: 30px;
+            color: white;
+            padding: 15px 0px;
+        }
+
+        .tr,
+        .tr1,
+        .tr2 {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            color: black;
+            margin: 10px;
+            height: 46px;
+            
+
+        }
+
+        .tr1 {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            background: antiquewhite;
+        }
+
+        .tr2 {
+            background: rgb(255, 211, 154);
+        }
+
+        .tr2 div,
+        .tr1 div {
+            width: 18.8vw;
+            margin: 2px 10px;
+            
+            align-items: center;
+            display: flex;
+            font-size: 18px;
+            letter-spacing: 2px;
+            justify-content: center;
+        }
+
+        .tr {
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            background: rgb(255, 211, 154);
+            height: 16px;
+            padding: 15px 0px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="go-home">
+        <a href="/webtool.html" class="home-btn">🢘 Back</a>
+    </div>
+    <div class="bdy">
+
+        <div class="name">
+            Student Record Table
+        </div>
+        <div class="cont">
+            <div id="StudentRecord">
+                <div class="thead">
+                    <div class="tr1">
+                        <div>NAME</div>
+                        <div class="ag">AGE</div>
+                        <div>STUDENT ID </div>
+                    </div>
+                    <div class="tbody"></div>
+                    <div class="tr">
+                        <div>NAME</div>
+                        <div>AGE</div>
+                        <div>STUDENT ID </div>
+                    </div>
+                </div>
+            </div>
+            <button class="button" id="button" onclick="update()">Update Table</button>
+            <button class="btn" id="btn" onclick="dy()">Click for new items </button>
+        </div>
+    </div>
+    <script>
+        let StudenTable = document.getElementById('StudentRecord');
+        const Student = [];
+        console.log(Student);
+
+        function update() {
+            updateprofile();
+        }
+        function updateprofile() {
+            let tbody = document.querySelector('.tbody');
+            let tdemo = document.querySelector('.tr');
+            tdemo.innerHTML = "🙂🙂 Thank You 🙂🙂";
+            tbody.innerHTML = " ";
+
+            function caller(obj) {
+                let row = document.createElement('div');
+                row.innerHTML = `<div class="tr2"> <div>${obj.name}</div> <div>${obj.age}</div> <div>${obj.Sid}</div></div> `
+                tbody.appendChild(row);
+
+            }
+            Student.forEach(caller);
+        }
+        function dydata(Student) {
+            Student.name = prompt('Enter Your name');
+            Student.age = parseInt(prompt('Enter Your age'));
+            let p = er();
+            if (p == 0) {
+                dydata(Student);
+            }
+            else {
+                Student.Sid = prompt('Enter Your Sid');
+                let x = { name: Student.name, age: Student.age, Sid: Student.Sid }
+                Student.push(x);
+
+            }
+
+        }
+        function dy() {
+            dydata(Student);
+        }
+        function er() {
+            try {
+                if (Student.age == 0) {
+                    throw new Error("Please enter greater then 0");
+                }
+                if (isNaN(Student.age)) {
+                    throw new Error("Please enter numbers only");
+                }
+            } catch (Error) {
+                alert(Error);
+                return 0;
+            }
+        }
+    </script>
+</body>
+
+</html>

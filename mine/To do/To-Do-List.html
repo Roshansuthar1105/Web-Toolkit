@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/f30fac2c61.js" crossorigin="anonymous"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Catamaran:wght@200&family=Courgette&family=Edu+TAS+Beginner:wght@700&family=Lato:wght@300;900&family=Mukta:wght@700&family=Mulish:wght@300&family=Open+Sans&family=PT+Sans:ital,wght@1,700&family=Poppins:wght@300&family=Raleway:wght@100&family=Roboto+Condensed:wght@700&family=Roboto+Slab&family=Roboto:wght@300;400&family=Source+Sans+Pro:wght@300&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            background-color: darkcyan;
+        }
+
+        .bdy {
+            background-color: darkcyan;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            border-radius: 5px;
+            border: 4px solid lightblue;
+            width: 360px;
+            padding: 33px;
+            text-align: center;
+            background-color: #fff;
+            margin-top: 5px;
+        }
+
+        input {
+            width: 270px;
+            padding: 8px;
+            border: 2px solid rgb(6, 145, 145);
+            outline: none;
+            font-size: 19px;
+
+
+
+        }
+
+        button {
+            width: 60px;
+            height: 41px;
+            background-color: rgb(99, 154, 154);
+            color: white;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            border-radius: 4px;
+            font-size: 19px;
+            margin-top: 19px;
+        }
+
+        .text ul {
+            position: relative;
+            background-color: cornflowerblue;
+            color: white;
+            font-size: 20px;
+            padding: 5px;
+            text-align: left;
+            font-weight: 300;
+        }
+
+        .text ul i {
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+            color: black;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background-color: darkcyan;
+            color: wheat;
+
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .go-home {
+            height: 70px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background-color: darkcyan;
+        }
+
+        .home-btn {
+            color: #0b1d3b;
+            background-color: #73C2FB;
+            border-radius: 10px;
+            letter-spacing: 3px;
+            font-family: monospace;
+            font-weight: 600;
+            border: 3px solid #4B0082;
+            font-size: 25px;
+            padding: 7px 30px;
+            text-decoration: none;
+        }
+
+        .home-btn:hover {
+            box-shadow: 0px 0px 25px cyan;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="go-home">
+        <a href="/Web Toolkit/webtool.html" class="home-btn">🢘 Back</a>
+    </div>
+    <div class="bdy">
+
+        <div class="main">
+            <div class="container">
+                <h1>ToDo App</h1>
+                <div class="inputs">
+                    <input type="text" placeholder="Enter Your Task" id="inp">
+                    <button onclick="Add()">Add</button>
+                </div>
+                <div class="text">
+                    <img src="https://tse3.mm.bing.net/th?id=OIP.uqi4Pm5s5qLc2GCCtZ7_ygHaHa&pid=Api&P=0&h=180" alt=""
+                        srcset="">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let inputs = document.getElementById("inp");
+        let text = document.querySelector(".text");
+
+        function Add() {
+            if (inputs.value == "") {
+                alert("Please Enter Task")
+            } else {
+                let newEle = document.createElement("ul");
+                newEle.innerHTML = `${inputs.value} <i class="fa-solid fa-trash"></i>`;
+                text.appendChild(newEle);
+                inputs.value = "";
+                newEle.querySelector("i").addEventListener("click", remove);
+                function remove() {
+                    newEle.remove()
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>

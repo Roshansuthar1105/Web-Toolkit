@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COUNTDOWN-TIMER</title>
+    <style>
+        * {
+            cursor: default;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: monospace;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: dodgerblue;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .countdown {
+            box-shadow: 0 0 20px;
+            padding: 20px 30px;
+            background-color: dodgerblue;
+            border-radius: 10px;
+        }
+
+        .countdown:hover {
+            transition: 1s all;
+            transform: scale(1.1);
+            box-shadow: none;
+        }
+
+        body:hover .countdown {
+            transition: 1s all;
+            /* transform: scaleX(0.8); */
+        }
+
+        #display {
+            background-color: darkslategray;
+            color: white;
+            padding: 10px 15px;
+            font-size: 35px;
+            font-weight: 600;
+            border: 0;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            margin: 0px 0px 50px 0px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-evenly;
+            padding: 0px;
+            margin: 5px;
+        }
+
+        .btn {
+            background-color: rgba(255, 99, 71, 0.9);
+            padding: 2px 10px;
+            border-radius: 5px;
+            border: 0px;
+            box-shadow: 2px 2px 5px black;
+            font-size: 20px;
+            font-weight: 700;
+
+
+        }
+
+        .btn:hover {
+            box-shadow: none;
+        }
+
+        .btn:active {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: tomato;
+        }
+
+        #stopbtn {
+            background-color: red;
+        }
+
+        #startbtn {
+            background-color: green;
+        }
+
+        #resetbtn {
+            background-color: orange;
+        }
+
+        .text {
+            border: 0px solid white;
+            border-radius: 3px;
+            color: black;
+            text-shadow: 0px 0px 9px white;
+            font-weight: bold;
+            font-size: 20px;
+            margin: 2px 10px;
+            text-align: center;
+
+        }
+
+        @keyframes n1 {
+            0% {
+                color: yellow;
+            }
+
+            33% {
+                color: red;
+            }
+
+            66% {
+                color: green;
+            }
+
+            100% {
+                color: yellow;
+            }
+        }
+
+        #heading {
+            text-shadow: 2px 2px 5px black;
+            text-align: center;
+            box-shadow: 0px 0px 15px black;
+            font-size: 25px;
+            font-weight: 800;
+            color: white;
+            border-radius: 3px;
+            margin-bottom: 20px;
+            margin: 10px;
+            padding: 20px;
+            animation: n1 3s steps(60) infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="countdown">
+        <div id="heading">COUNTDOWN-TIMER</div>
+        <div class="text">Hours : Minutes : Seconds : Miliseconds</div>
+        <div id="display">
+            00 : 00 : 00 : 000
+        </div>
+        <div class="buttons">
+            <button type="button" id="stopbtn" class="btn" onclick="stoop()">Stop</button>
+            <button type="button" id="startbtn" class="btn" onclick="starrt()">Start</button>
+            <button type="button" id="resetbtn" class="btn" onclick="reseet()">Reset</button>
+        </div>
+    </div>
+    <script>
+        let msec = 0;
+        let sec = parseInt(prompt('Enter seconds', "00"));
+        let min = parseInt(prompt('Enter minuts', "00"));
+        let hours = parseInt(prompt('Enter hours', "00"));
+        let h = hours < 10 ? "0" + hours : hours;
+        let m = min < 10 ? "0" + min : min;
+        let s = sec < 10 ? "0" + sec : sec;
+        let ms = msec;
+        if (ms < 100) {
+            if (ms < 10) {
+                ms = "00" + msec
+            }
+            ms = "0" + msec
+        }
+        document.getElementById("display").innerHTML = `${h} : ${m} : ${s} : ${ms} `;
+        while (sec >= 60) {
+            sec = sec - 60;
+            min = min + 1
+        }
+        while (min >= 60) {
+            min = min - 60;
+            hours = hours + 1
+        }
+        let timeref = document.getElementById("display");
+        let int = null;
+        function starrt() {
+            if (int !== null) {
+                clearInterval(int);
+            }
+            int = setInterval(displayTimer,10);
+        }
+        function stoop() {
+            clearInterval(int);
+        }
+        function reseet() {
+            clearInterval(int);
+            msec = 990;
+            sec = 59;
+            min = 59;
+            hours = 23;
+            document.getElementById("display").innerHTML = "23 : 59 : 59 : 990 ";
+
+        }
+        function displayTimer() {
+            msec = msec - 10;
+            if (msec <= 0 && sec > 0) {
+                msec = 990;
+                sec = sec - 1;
+                if (sec <= 0 && min > 0) {
+
+                    sec = 59;
+
+
+
+                    min--;
+                    if (min <= 0 && hours > 0) {
+                        min = 59;
+                        hours--;
+                    }
+                }
+            }
+            if (msec < 0) {
+                alert("Time's up");
+                var audio = new Audio("Sleep Away");
+                audio.play();
+                reseet();
+                msec = 990;
+                sec = parseInt(prompt('Enter seconds', "00"));
+                min = parseInt(prompt('Enter minuts', "00"));
+                hours = parseInt(prompt('Enter hours', "00"));
+                // if (msec <=0 ) {
+                //     break;
+                // }
+                    
+            }
+              
+            let h = hours < 10 ? "0" + hours : hours;
+            let m = min < 10 ? "0" + min : min;
+            let s = sec < 10 ? "0" + sec : sec;
+            let ms = msec;
+            if (ms < 100) {
+                if (ms < 10) {
+                    ms = "00" + msec
+                }
+                ms = "0" + msec
+            }
+            document.getElementById("display").innerHTML = `${h} : ${m} : ${s} : ${ms} `;
+        }
+    </script>
+</body>
+
+</html>

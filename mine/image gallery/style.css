@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: monospace;
+}
+
+.container {
+    background-color: #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.heading {
+    font-size: 30px;
+    padding: 50px 0px 30px;
+    width: 100%;
+    text-align: center;
+}
+
+h3 {
+    display: block;
+    border-bottom: 3px solid black;
+    padding: 10px 50px 30px;
+    text-transform: uppercase;
+    animation: ani infinite 2s;
+}
+
+@keyframes ani {
+
+    0%,
+    100% {
+        letter-spacing: 3px;
+    }
+
+    50% {
+        letter-spacing: 8px;
+    }
+}
+
+span {
+    opacity: 0.5;
+}
+
+.box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+    padding: 10px;
+    font-size: 20px;
+
+}
+
+.box1,
+.box2,
+.box3 {
+    width: 470px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.box1 div,
+.box2 div,
+.box3 div {
+    width: 450px;
+    margin: 10px 0px;
+    height: auto;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px 2px black;
+    padding: 10px;
+    background-color: dodgerblue;
+}
+
+img {
+    height: auto;
+    width: 100%;
+}
+
+img:hover {
+    transform: scale(1.2);
+    transition: all 500ms;
+    border-radius: 10px;
+    filter: grayscale(0.9);
+}
+
+.box1>div:hover {
+    border-radius: 20px;
+    transition: all 500ms;
+}
+
+.box2>div:hover {
+    border-radius: 20px;
+    transition: all 500ms;
+}
+
+.box3>div:hover {
+    border-radius: 20px;
+    transition: all 500ms;
+}

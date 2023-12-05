@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <style>
+        * {
+            background-color: #F4DB7D;
+            padding: 0;
+            overflow: hidden;
+
+        }
+
+        body {
+            height: 100%;
+            width: 97%;
+            padding: 10px;
+        }
+
+        .cardcont {
+            background-color: #FF6A3D;
+            text-align: center;
+            padding: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        .h1,
+        #result {
+            font-family: monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* letter-spacing: 4px; */
+            font-size: 30px;
+            text-align: center;
+            font-weight: 800;
+            padding: 10px;
+            height: 56px;
+            background-color: #E1FCFD;
+            margin: 20px 0px;
+        }
+
+        .card {
+            background-color: #9DAAF2;
+            border: 0px solid black;
+            border-radius: 20px;
+            height: 400px;
+            width: 300px;
+            box-shadow: 5px 5px 10px black;
+            margin: 20px;
+        }
+
+        .btn {
+            margin: 10px;
+            height: 50px;
+            width: 200px;
+            font-size: 40px;
+            font-weight: 700;
+            text-align: center;
+            border: 0px solid black;
+            background-color: crimson;
+            border-radius: 10px;
+            font-family: monospace;
+        }
+
+        .img {
+            border-radius: 10%;
+            height: 250px;
+            width: 250px;
+            margin: 25px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        img {
+            border-radius: 10%;
+            height: 250px;
+            width: 250px;
+        }
+
+        .btn:hover {
+            background-color: rgb(125, 2, 26);
+            color: white;
+            cursor: pointer;
+            transition: all 1s;
+        }
+
+        .card:hover {
+            box-shadow: inset 0px 0px 15px 3px black;
+            transition: all 1s;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="h1">
+        Rock Paper Scissor Game
+    </div>
+    <div class="cardcont">
+        <div class="card" id="c1">
+            <div class="img">
+                <img src="/images/rock.jpg" alt="Rock" srcset="">
+
+            </div>
+            <button id="r" class="btn" onclick="play('rock')">Rock</button>
+        </div>
+        <div class="card" id="c2">
+            <div class="img">
+
+                <img src="/images/paper.jpg" alt="Paper" srcset="">
+            </div>
+            <button id="p" class="btn" onclick="play('paper')">Paper</button>
+        </div>
+        <div class="card" id="c3">
+            <div class="img">
+
+                <img src="/images/scissors.jpg" alt="scissors" srcset="">
+            </div>
+            <button id="s" class="btn" onclick="play('scissors')">Scissors</button>
+        </div>
+
+
+    </div>
+    <div id="result">Please Select any one option to start the game
+    </div>
+
+    <script>
+
+        function play(playerChoice) {
+            const choices = ['rock', 'paper', 'scissors'];
+            const computerChoice = choices[Math.floor(Math.random() * 3)];
+
+            let result = '';
+
+            if (playerChoice === computerChoice) {
+                result = "It's a tie!";
+            } else if (
+                (playerChoice === 'rock' && computerChoice === 'scissors') ||
+                (playerChoice === 'paper' && computerChoice === 'rock') ||
+                (playerChoice === 'scissors' && computerChoice === 'paper')
+            ) {
+                result = 'You win!';
+            } else {
+                result = 'Computer wins!';
+            }
+
+            document.getElementById('result').textContent = `You chose ${playerChoice}. Computer chose ${computerChoice}. ${result}`;
+        }
+    </script>
+</body>
+
+</html>

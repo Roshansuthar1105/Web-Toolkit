@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration | Sign In Form </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/libs/font-awsome/5.14.0/css/all.min.css">
+</head>
+
+<body>
+    <div id="main" class="container">
+        <div class="sign-up">
+            <form action="#">
+                <h1>
+                    Create Account
+                </h1>
+
+                <input type="text" name="txt" placeholder="Name" required="">
+                <input type="email" name="email" placeholder="Email" required="">
+                <input type="password" name="pswd" placeholder="Password" required="">
+                <button>Sign Up</button>
+            </form>
+        </div>
+        <div class="sign-in">
+            <form action="#">
+                <h1>
+                    Sign In
+                </h1>
+
+                <input type="email" name="email" placeholder="Email" required="">
+                <input type="password" name="pswd" placeholder="Password" required="">
+                <a href="#">Forget Your Password ?</a>
+                <button>Sign In</button>
+            </form>
+        </div>
+        <div class="overlay-cont">
+            <div class="overlay">
+
+                <div class="overlay-left">
+                    <h1>Welcome Back ! </h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-right">
+                    <h1>Hello , Friend</h1>
+                    <p>Enter your personal details and start journey with us </p>
+                    <button id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

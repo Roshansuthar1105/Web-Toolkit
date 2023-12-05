@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QUIZ App</title>
+    <style>
+      * {
+        padding: 0px 10px;
+        margin: 0px;
+      
+        
+      }
+
+      body {
+        background: linear-gradient(45deg, #fc466b 50%, #3f5efb 50%);
+        
+      }
+      .main {
+        
+        width: 100%;
+        height: 88vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+      }
+
+      #box {
+        margin-top: 5px;
+        height: 420px;
+        min-width: 50%;
+        border: 3px solid lightcoral;
+        background-color: blanchedalmond;
+        border-radius: 10px;
+        box-shadow: 4px 4px 10px black;
+        padding: 15px;
+      }
+      #quesBox {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+      }
+      .row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 20px;
+        margin-left: 0px;
+      }
+      .row > div {
+        border-radius: 10px;
+        border: 2px black;
+        background-color: lightskyblue;
+        margin: 9px;
+        padding: 10px;
+        font-weight: 700;
+        font-size: 20px;
+      }
+      .row > div:hover,.row > div >input:hover,.row > div > label:hover {
+        background-color: rgb(74, 115, 129);
+        cursor: pointer;
+      }
+      .submit {
+        margin-left: 20px;
+        margin-top: 20px;
+        padding: 5px;
+        border-radius: 7px;
+        font-size: 20px;
+        font-weight: 800;
+        width: 250px;
+        border: none;
+        border: 2.5px solid black;
+        color: black;
+        background-color: dodgerblue;
+        cursor: pointer;
+        box-shadow: 4px 4px 10px black;
+      }
+      
+      .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .submit:hover {
+        width: 300px;
+        margin-bottom: 15px;
+        background-color: aqua;
+        box-shadow: 2px 2px 2px black;
+        transition: all 800ms;
+      }
+      .end {
+        text-align: center;
+    margin-top: 50px;
+    border: 0px solid black;
+    font-size: 20px;
+    font-family: cursive;
+    box-shadow: 0 0 10px black;
+    border-radius: 0px;
+            }
+
+      h1 {
+        color: white;
+      }
+      
+.home-btn{
+    color: #0b1d3b;
+    background-color: #73C2FB;
+    border-radius: 10px;
+    letter-spacing: 3px;
+    font-family: monospace;
+    font-weight: 600;
+    border: 3px solid #4B0082;
+    font-size: 25px;
+    padding: 7px 30px;
+    text-decoration: none;
+}
+
+.home-btn:hover {
+  box-shadow: 0px 0px 25px cyan;
+}
+.go-home{
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0px 10px ;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="go-home">
+      <a href="/webtool.html" class="home-btn">🢘 Back</a>
+  </div>
+    <div class="main">
+      <h1>QUIZ App</h1>
+      <div id="box" class="boxx">
+        <h2 id="quesBox">1) This is sample question. this is first question</h2>
+        <div class="row">
+          <div>
+            <input
+              class="options"
+              type="radio"
+              name="Option"
+              value="a"
+              id="option1"
+            />
+            <label for="option1"> Option 1</label>
+          </div>
+          <div>
+            <input
+              class="options"
+              type="radio"
+              name="Option"
+              value="b"
+              value="a"
+              id="option2"
+            />
+            <label for="option2"> Option 2</label>
+          </div>
+          <div>
+            <input
+              class="options"
+              type="radio"
+              name="Option"
+              value="c"
+              id="option3"
+            />
+            <label for="option3"> Option 3</label>
+          </div>
+          <div>
+            <input
+              class="options"
+              type="radio"
+              name="Option"
+              value="d"
+              id="option4"
+            />
+            <label for="option4"> Option 4</label>
+          </div>
+        </div>
+        <div class="btn">
+          <button class="submit" onclick="submit()">Submit Answer</button>
+        </div>
+      </div>
+    </div>
+    <script>
+              const questions = [
+        {
+          ques: " What is HTML?",
+          a: " HTML describes the structure of a webpage",
+          b: " HTML is the standard markup language mainly used to create web pages",
+          c: " HTML consists of a set of elements that helps the browser how to view the content",
+          d: " All of the mentioned",
+          correct: "d",
+        },
+        {
+          ques: "HTML stands for __________",
+          a: "HyperText Markup Language",
+          b: "HyperText Machine Language",
+          c: "HyperText Marking Language",
+          d: "HighText Marking Language",
+          correct: "a",
+        },
+        {
+          ques: "What is the correct syntax of doctype in HTML5?",
+          a: "</doctype html>",
+          b: "<doctype html>",
+          c: "<doctype html!>",
+          d: "<!doctype html>",
+          correct: "d",
+        },
+        {
+          ques: "What is a CSS selector?",
+
+          a: "A CSS selector is the CSS class name",
+          b: "A CSS selector is the set of properties that are going to be applied on HTML elements",
+          c: "A CSS selector is name of CSS file.",
+          d: "A CSS selector is the first part of a CSS Rule. It may an HTML element or pattern of elements",
+          correct: "d",
+        },
+        {
+          ques: " What is HTML?",
+          a: " HTML describes the structure of a webpage",
+          b: " HTML is the standard markup language mainly used to create web pages",
+          c: " HTML consists of a set of elements that helps the browser how to view the content",
+          d: " All of the mentioned",
+        },
+      ];
+
+      let index = 0;
+      let total = questions.length;
+      let right = 0;
+      let wrong = 0;
+      const quesBox = document.getElementById("quesBox");
+      const option = document.querySelectorAll(".options");
+      // if(index==total){
+      //     return endQuiz();
+      // }
+
+      //     reset();
+
+
+      const loadques = () => {
+
+      if(index==total){
+          return endQuiz();
+      }
+
+          reset();
+
+        const data = questions[index];
+        quesBox.innerHTML = `${index + 1})${data.ques}`;
+        option[0].nextElementSibling.innerText = data.a;
+        option[1].nextElementSibling.innerText = data.b;
+        option[2].nextElementSibling.innerText = data.c;
+        option[3].nextElementSibling.innerText = data.d;
+      }
+      const submit = () => {
+        const data = questions[index];
+        const ans = answer();
+        if (ans === data.correct) {
+          right++;
+
+        } else {
+          wrong++;
+        }
+        index++;
+        loadques();
+        return;
+      }
+
+      function answer() {
+          let answer;
+          option.forEach(
+              (input) => {
+                  if (input.checked) {
+                      answer= input.value;
+                  }
+              }
+          );
+          return answer;
+      }
+
+      const reset=()=>{
+          option.forEach(
+              (input) => {
+                 input.checked=false;
+                 }
+          )
+      }
+       const endQuiz=()=>{
+          document.getElementById("box").innerHTML=`
+          <div class="end">
+          <h3> Thanks for attempting the QUIZ </h3>
+          <h2>${right} / ${total} answers are Correct.</h2>
+
+          </div>
+          `
+       }
+      loadques();
+
+      // if(index==total){
+      //     return endQuiz();
+      // }
+
+      //     reset();
+    </script>
+  </body>
+</html>

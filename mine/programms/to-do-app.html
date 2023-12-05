@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To - Do</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Kanit:wght@100&family=Roboto&family=Ubuntu:wght@300;400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Amiri Quran', serif;
+            font-family: 'Kanit', sans-serif;
+            font-family: 'Roboto', sans-serif;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        .main {
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        .cont {
+            width: 100%;
+            min-height: 100vh;
+            background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .head h2 {
+            font-size: 30px;
+            font-weight: 600;
+            border-radius: 5px;
+        }
+
+        .head {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            background: antiquewhite;
+            justify-content: center;
+            font-size: 30px;
+            font-weight: 600;
+            border-radius: 5px;
+            height: 100px;
+            width: 600px;
+            cursor: default;
+            margin: 100px auto 0px;
+            padding: 30px 0px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .head::before {
+            content: '';
+            position: absolute;
+            background: linear-gradient(#00ccff, #d400d4);
+            animation: animate 5s linear infinite;
+            height: 30px;
+            width: 600px;
+        }
+
+        .head::after {
+            content: 'To Do Task List';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: absolute;
+            inset: 4px;
+            background: #21D4FD;
+            border-radius: 5px;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .todoapp {
+            width: 100%;
+            max-width: 600px;
+            background: #0C356A;
+            margin: 10px auto 20px;
+            padding: 40px 30px 70px;
+            border-radius: 5px;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #F4F2DE;
+            border-radius: 5px;
+            margin-bottom: 25px;
+
+        }
+
+        input:hover {
+            background-color: #f6f1c3;
+            font-style: normal;
+        }
+
+        input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background-color: #F4F2DE;
+            padding-left: 20px;
+            font-size: 20px;
+            margin: 0;
+            height: 44px;
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        button {
+            border: none;
+            outline: none;
+            padding: 16px 50px;
+            background-color: dodgerblue;
+            color: black;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 2px solid dodgerblue;
+            /* height: 44px; */
+        }
+
+        ul li {
+            list-style: none;
+            font-size: 17px;
+            padding: 12px 8px 12px 50px;
+            cursor: pointer;
+            user-select: none;
+            background-color: rgb(210, 224, 251);
+            border-radius: 5px;
+            position: relative;
+            margin: 10px 0px;
+        }
+
+        ul li:hover {
+            background-color: rgb(142, 172, 205);
+
+        }
+
+        ul li::before {
+            content: '';
+            position: absolute;
+            height: 28px;
+            width: 28px;
+            background-color: lightgreen;
+            border: 2px solid black;
+            border-radius: 50%;
+            top: 8px;
+            left: 8px;
+        }
+
+        ul li.checked {
+            color: black;
+            text-decoration: line-through;
+            background-color: lightgreen;
+        }
+
+        ul li.checked::before {
+            background-color: lightgreen;
+            content: '✔';
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        ul li span {
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            width: 30px;
+            height: 30px;
+            font-size: 22px;
+            background-color: rgb(255, 53, 53);
+            line-height: 45px;
+            text-align: center;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            font-weight: 900;
+            color: white;
+        }
+
+
+
+        ul li span:hover::before {
+            background-color: rgb(89, 5, 5);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+
+        <div class="cont">
+            <div class="head">
+                <h2>TO-DO List</h2>
+            </div>
+
+            <div class="todoapp">
+                <div class="row">
+                    <input type="text" id="ibox" placeholder="Add Your Tasks here">
+                    <button onclick="add()"> Click to Add </button>
+                </div>
+                <ul id="listcont">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        const ibox = document.getElementById("ibox");
+        const listcont = document.getElementById("listcont");
+
+        function add() {
+            if (ibox.value === '') {
+                alert("You forget to write 🙂");
+            }
+            else {
+                let li = document.createElement("li");
+                li.innerHTML = ibox.value;
+                listcont.appendChild(li);
+                let span = document.createElement("span");
+                span.innerHTML = "\u00d7";
+                li.appendChild(span);
+            }
+            ibox.value = '';
+            saveData();
+        }
+        ibox.addEventListener('keyup', (e) => {
+            if (e.keyCode === 13) {
+                add();
+            }
+        })
+
+        listcont.addEventListener("click", function (e) {
+            if (e.target.tagName === "LI") {
+                e.target.classList.toggle("checked");
+                saveData();
+            }
+            else if (e.target.tagName === "SPAN") {
+                e.target.parentElement.remove();
+                saveData();
+            }
+        }, false);
+
+        function saveData() {
+            localStorage.setItem("data", listcont.innerHTML);
+
+        }
+        function showtask() {
+            listcont.innerHTML = localStorage.getItem("data");
+        }
+        showtask();
+
+    </script>
+</body>
+
+</html>
